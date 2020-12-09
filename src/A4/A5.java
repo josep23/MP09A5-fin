@@ -1,0 +1,106 @@
+package A4;
+
+import javax.crypto.SecretKey;
+
+import java.io.IOException;
+import java.security.*;
+import java.security.cert.CertificateException;
+import java.util.Scanner;
+
+import static A4.Xifrar.*;
+
+public class A5 {
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        KeyPair Generadorllave = randomGenerate(1024);
+        System.out.println("1. Parell de claus, KeyStore i PublicKey");
+        System.out.println("  1.afegeix a la classe d’utilitats de criptografia de l’activitat A4 el mètode 1.2.1 randomGenerate del apunts.");
+        System.out.println("   I.Genera un parell de claus (KeyPair) de 1024bits, i utilitza-les per xifrar i desxifrar un missatge.");
+            System.out.println(Xifrar.randomGenerate(1024).getPublic());
+            System.out.println(Xifrar.randomGenerate(1024).getPrivate());
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("  II.Fes que el missatge a xifrar s’entri pel teclat..");
+        System.out.println("      Dime que quieres cifrar: ");
+             String respuesta = scanner.nextLine();
+             byte[] cifrandomensajeA5 = Xifrar.encryptData(respuesta.getBytes(), Generadorllave.getPublic());
+             System.out.println(cifrandomensajeA5);
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println(" III.Fes servir els mètodes getPublic i getPrivate per obtenir les claus i el mètodes derivats d’aquestes claus i observa quines dades aporten.");
+            System.out.println(Generadorllave.getPublic().toString());
+            System.out.println(Generadorllave.getPrivate().getAlgorithm());
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("2.Keystore (loadKeystore 1.4 apunts)");
+        System.out.println(" I.Fés la lectura d’un dels keystore que tinguis al teu sistema i extreu-ne la següent informació:");
+        KeyStore llavero = Xifrar.loadKeyStore("/home/usuario/.keystore", "usuario");
+            System.out.println("1.Tipus de keystore que és (JKS, JCEKS, PKCS12, ...)");
+        System.out.println(llavero.getType());
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+            System.out.println("2.Mida del magatzem (quantes claus hi ha?)");
+        System.out.println(llavero.size());
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+            System.out.println("3.Àlies de totes les claus emmagatzemades");
+        System.out.println(llavero.aliases().nextElement());
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+            System.out.println("4.El certificat d’una de les claus");
+        System.out.println(llavero.getCertificate(llavero.aliases().nextElement()));
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+            System.out.println("5.L'algorisme de xifrat d’alguna de les claus");
+        System.out.println (llavero.getCertificate(llavero.aliases().nextElement()).getPublicKey().getAlgorithm());
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("II.Crea una nova clau simètrica (SecretKey) i desa-la (setEntry) al keystore.");
+        System.out.println("   Tingueu en compte que si deseu (mètode store) amb una altra contrasenya el keystore queda modificat.");
+        System.out.println("   Fes un captura de pantalla llistant amb la comanda keytool les claus del keystore ");
+        System.out.println("   on has fet la nova entrada.");
+        Xifrar.meterLlave(llavero, "cualquiera", "aquiAlias");
+        System.out.println(llavero.size());
+        System.out.println(llavero.containsAlias("aquiAlias"));
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("Fes un funció que donat un fitxer amb un certificat (.cer) retorni la seva ");
+        System.out.println("PublicKey. Usa aquesta funció i mostra per pantalla les dades de la PublicKey llegida.");
+        System.out.println(Xifrar.getPublicKey("/home/usuario/Escritorio/jordi.cer"));
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("Llegir una clau asimètrica del keystore i extreure’n la PublicKey. Imprimir-la per pantalla.");
+        System.out.println("Podeu crear una funció igual que en el punt 3 fent sobrecàrrega)");
+        System.out.println(Xifrar.getPublicKeyFromKeyStore(llavero,"myKey"));
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("Fer un funció que donades unes dades i una PrivateKey retorni la signatura. Usa-la i mostra la signatura per pantalla. (funció dels apunts 1.3.1)");
+        System.out.println(firmar("algo",Xifrar.randomGenerate(1024).getPrivate()));
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("Fer una funció que donades unes dades, una signatura i la PublicKey, comprovi la validesa de la informació. (funció dels apunts 1.3.2)");
+        System.out.println(Xifrar.validar("algo", Xifrar.randomGenerate(1024).getPublic(), firmar("algo", Xifrar.randomGenerate(1024).getPrivate())));
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("Clau embolcallada (1.2.3)");
+        System.out.println("Implementeu dels apunts els mètodes encryptWrappedData i decryptWrappedData, i comenteu el codi identificant els elements de la imatge (és a dir, posar el text de dins els requadres en el tros de codi que correspongui):");
+        System.out.println("︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵︵");
+        System.out.println("|                                                                                                                                                 |");
+        System.out.println("︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶︶");
+        System.out.println("Genereu un parell de claus (KeyPair) i proveu de xifrar i desxifrar un text amb clau embolcallada.");
+
+    }
+}
